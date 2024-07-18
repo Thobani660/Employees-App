@@ -4,8 +4,9 @@ function Side(){
 <div class="side">
                 <div class="nav">
                     <input className='search' value={"Search"} type="search"></input>
-                    <div class="settings">noty</div>
-                    <div class="profile">+ Empls</div>
+                    <div class="settings"><span class="material-symbols--notifications"></span></div>
+                    <div class="profile"><span class="mdi--invite"></span>
+                    Add</div>
                 </div>
 
                 <div class="leon">
@@ -21,6 +22,7 @@ function Side(){
                     <div class="middlecontainer">
                             <div>
                                 <h6></h6>
+                                <label for="fname"></label><br/>
                                 <input className='name' value={"name"} type="text" />
                                 <input className='lastname' value={"Lastname"} type="text" />
                             </div>
@@ -31,7 +33,7 @@ function Side(){
 
                         <div class="middlecontainer">
                                 <div>
-                                    <input type="text" className='position' value={"Email"} />
+                                    <input type="text" className='position' value={"@Email"} />
                                     <input type="text"  className='position' value={"Nu."} />
                                 </div>
                                 <div>
@@ -39,7 +41,7 @@ function Side(){
                                     <input type="text"  className='position' value={"Fax"} />
                                 </div>
                         </div>
-                        <button className="Submit">submit</button>
+                        <button className="Submit" >Sub</button>
                         {/* <button></button> */}
                 </div>
                 <div className='signin'>
@@ -96,6 +98,7 @@ function Side(){
                     </div>
                 </div>
             </div>
+        
 </>
     )
 }export default Side;
