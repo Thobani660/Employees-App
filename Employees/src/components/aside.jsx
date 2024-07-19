@@ -12,7 +12,7 @@ function Aside(){
                 <div class="vert">Map</div>
                 <div class="vertpic"> <br/>you need help<span class="ic--outline-live-help"></span>
                     <br />Click the button below
-                    <br /><button className="Help">help</button>
+                    <br /><button  className="Help">help</button>
                 </div>
                 </div>
             </div>

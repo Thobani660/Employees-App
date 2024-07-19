@@ -4,9 +4,23 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Aside from './components/aside'
 import Side from './components/side'
+import Signin from './components/signin'
+import EmployeeForm from './components/form'
 // import Maincontainer from './components/maincontainer'
 function App() {
   const [count, setCount] = useState(0)
+  // const [showBlueBox, setShowBlueBox] = useState(true);
+  // const [showGreenBox, setShowGreenBox] = useState(false);
+
+  // const toggleBlueBox = () => {
+  //   setShowBlueBox(false);
+  //   setShowGreenBox(true);
+  // };
+
+  // const toggleGreenBox = () => {
+  //   setShowGreenBox(false);
+  //   setShowBlueBox(true);
+  // };
 
   return (
     <>
@@ -14,7 +28,9 @@ function App() {
       <div className="flex-container">
         
       <Aside></Aside>
-      <Side></Side>
+      <Side>
+        <Signin></Signin>
+      </Side>
      
         </div>
     </>
