@@ -1,97 +1,161 @@
+import React, { useState } from 'react';
+import EmployeeForm from "./form";
+import Signin from "./signin";
+import SearchHistory from './search';
 
 function Side(){
 
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        Surname:'',
+        Position:'',
+        Email:'',
+        Idnumber:'',
+        Call:'',
+        Fax:'',
+      });
+    
+      const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prevData => ({
+          ...prevData,
+          [name]: value
+        }));
+      };
+    
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log('Employee Form:', formData);
+      };
+
+    // localStorage.setItem("name","Thobani")
+    // console.log(localStorage.getItem("name"));
+
+    // localStorage.setItem('search');
+    // localStorage.getItem("search")
+    
+    // localStorage.setItem("search","searching");
+    // console.log(localStorage.getItem("search"));
+    // const obj = {"name","",surname",}
+
+
     return(
 <>
-<div class="side">
-                <div class="nav">
-                    <input className='search' value={"Search"} type="search"></input>
-                    <div class="settings"><span class="material-symbols--notifications"></span></div>
-                    <div class="profile"><span class="mdi--invite"></span>
-                    Add</div>
+<div className="side">
+                <div className="nav">
+                    <SearchHistory/>
+                    {/* <input  
+                            className='search' 
+                            defaultValue={"Search"} 
+                            type="search" 
+                            placeholder="alungile"
+                    /> */}
+                    <div 
+                        className="settings">
+                            <span className="material-symbols--notifications">
+                            </span>
+                    </div>
+
+                    <div id="profile">
+                        <span className="mdi--invite"></span>
+                        Add
+                    </div>
                 </div>
 
-                <div class="leon">
+                <div className="leon">
                    <div >
                     <h3>WORK WEB</h3>
                     <p>apply on a new post today!</p>
                    </div>
-                   <div class="circle"></div>
+                   <div className="circle"></div>
                 </div>
 
              
                     <div className='display'>
-                       {/* <div className="displayhere">
-                            <div class="middlecontainer">
+                        {/* <EmployeeForm></EmployeeForm> */}
+                       <div className="displayhere">
+                           <form onSubmit={handleSubmit} >
                                     <div>
-                                        <h6></h6>
-                                        <label for="fname"></label><br/>
-                                        <input className='name' value={"name"} type="text" />
-                                        <input className='lastname' value={"Lastname"} type="text" />
-                                    </div>
-                            </div> */}
-                            {/* <data value=""></data>  <h6>position:</h6> */}
-                            {/* <input value={"Position"}  className='middleinput' type="text" />
+                                        <div class="middlecontainer">
+                                                    <div>
+                                                            <label for="fname"></label><br/>
+                                                            <input value={formData.name} id="name" onChange={handleChange} name="name" className='name' placeholder={"Full Name"} type="text" />
+                                                            <input value={formData.Surname} id="lastname" onChange={handleChange} name="Surname"  className='lastname' placeholder={"Surname"} type="text" />
+                                                    </div>         
+                                                </div> 
+                                                <data value=""></data>
+                                                <input 
+                                                        placeholder={"Position"} 
+                                                        value={formData.Position} 
+                                                        id="Position" 
+                                                        onChange={handleChange} 
+                                                        name="Position"   
+                                                        className='middleinput' 
+                                                        type="text" />
 
-                                <div class="middlecontainer">
-                                        <div>
-                                            <input type="text" className='position' value={"@Email"} />
-                                            <input type="text"  className='position' value={"Nu."} />
-                                        </div>
-                                        <div>
-                                            <input type="text"  className='position' value={"Contact"} />
-                                            <input type="text"  className='position' value={"Fax"} />
-                                        </div>
+                                                    <div class="middlecontainer">
+                                                            <div>
+                                                                <input type="text" value={formData.Email} id="Email" onChange={handleChange} name="Email"   className='position' placeholder={"@Email"} />
+                                                                <input type="text" value={formData.Id} id="Idnumber"  onChange={handleChange} className='position' placeholder={"ID number"} />
+                                                            </div>
+                                                            <div>
+                                                                <input type="text" value={formData.Phone} id="Call" onChange={handleChange} name="Phone"   className='position' placeholder={"Phone number"} />
+                                                                <input type="text" value={formData.Fax} id="fax" onChange={handleChange} name="Fax"   className='position' placeholder={"Fax"} />
+                                                            </div>
+                                                        
+                                                    </div>
+                                                    <button  className="Submit" >Update</button>
+                                    </div>
+                           </form>
+                           <div>
+                                <h1>hello</h1>
+                                <div className="employees1">
+                                    <div className='employeespic'>
+                                    <div><img src="" alt="" /></div>
+                                    </div>
+                                    <div className="details">
+                                        <h5>Employees </h5>
+                                    </div>
+                                    <div className="invite">
+                                            <div className="add"></div> 
+                                            <div className="delete"></div>        
+                                    </div>
                                 </div>
-                                <button  className="Submit" >Update</button>
+                           </div>
                          
-                        </div> */}
-                        {/* <Form></Form> */}
-                     
+                        </div>
+
+                       
+                
                     </div>
               
-                 <div className='signin'>
-                    <input type="text" value={"username"} />
-                    <input type="password" value={"Password"} /> <br/>
-                    <button>login</button>
-                    <button>signup</button>
-                    <button >cancel</button>
-                 </div>
+                    <div className='signin'>
+                        <input type="text" defaultValue={"username"} />
+                        <input type="password" defaultValue={"Password"} /> <br/>
+                        <button>login</button>
+                        <button>signup</button>
+                        <button >cancel</button>
+                    </div>
+                 
                
 
                 <div className='Prof'>
                     <div className='profile image'>
-                <img src="" alt="" />
+                        <img src="" alt="" />
                     </div>
-                    <h2>Thobani Zondi</h2>
-                    <div>
-                    <h5>Position
-                       <br/> Gender
-                        <br/>Work
-                        <br/>Nextkin
-                        <br/>Contact
-                    </h5>
-                    <button> edit</button>
-                <button>delete</button>
+                            <h2>Thobani Zondi</h2>
+                            <div>
+                            <h5>Position
+                            <br/> Gender
+                                <br/>Work
+                                <br/>Nextkin
+                                <br/>Contact
+                            </h5>
+                            <button> edit</button>
+                        <button>delete</button>
                     </div>
-                    <div>
-                    <div className="employees">
-                            <h1>employees</h1>
-                            <br/>
-                    <div className='employeespic'>
-                        <div><img src="" alt="" /></div>
-                    </div>
-                    <div>
-                       <h5>Employees </h5>
-                    </div>
-                        </div>
-                        
-
-                    </div>
-                    
                 </div>
-
-             
             </div>
         
 </>

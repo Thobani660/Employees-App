@@ -1,20 +1,26 @@
 function Signin(){
-    const [showBlueBox, setShowBlueBox] = useState(true);
-    const [showGreenBox, setShowGreenBox] = useState(false);
+    // const [showBlueBox, setShowBlueBox] = useState(true);
+    // const [showGreenBox, setShowGreenBox] = useState(false);
   
-    const toggleBlueBox = () => {
-      setShowBlueBox(false);
-      setShowGreenBox(true);
-    };
+    // const toggleBlueBox = () => {
+    //   setShowBlueBox(false);
+    //   setShowGreenBox(true);
+    // };
   
-    const toggleGreenBox = () => {
-      setShowGreenBox(false);
-      setShowBlueBox(true);
-    };
+    // const toggleGreenBox = () => {
+    //   setShowGreenBox(false);
+    //   setShowBlueBox(true);
+    // };
+
+
+    const form = ["name","thobani","Surname","zondi"];
+    localStorage.setItem("form","name")
+    
+    console.log(localStorage.getItem("num"))
     return(
             <>
                 <div>
-      {showBlueBox && (
+      {/* {showBlueBox && ( */}
         <div
           style={{
             width: '400px',
@@ -28,10 +34,10 @@ function Signin(){
         >
           <input type="text" />
           <br />
-          <button onClick={toggleBlueBox}>Update</button>
+          <button>Update</button>
         </div>
-      )}
-     {showGreenBox && (
+      {/* )} */}
+     {/* ( */}
         <div
           style={{
             width: '400px',
@@ -45,9 +51,9 @@ function Signin(){
             
           }}
         >
-          <button onClick={toggleGreenBox}>profile</button>
+          <button>profile</button>
         </div>
-      )}
+      {/* )} */}
     </div>
             </>
     )

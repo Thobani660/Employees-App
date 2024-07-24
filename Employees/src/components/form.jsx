@@ -19,7 +19,7 @@ function EmployeeForm(){
       e.preventDefault();
       console.log(employee);
     };
-    
+   
     return (
     <div>
       <form onSubmit={handleSubmit}>

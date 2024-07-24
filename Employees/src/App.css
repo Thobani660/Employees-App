@@ -92,19 +92,18 @@ body {
   border-radius:10px;
   width: 200px;
   height: 30px;
-  margin-left: 80px;
+  margin-left: 60px;
   border: 2px solid gray;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   color: unset;
   cursor: text;
 }
 .middleinput:hover {
   border-radius:10px;
   width: 200px;
- 
-  margin-left: 80px;
+  margin-left: 60px;
   border: 2px solid rgb(56, 56, 56);
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   color: unset;
   cursor: text;
 }
@@ -249,7 +248,7 @@ input:hover {
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
 }
-.profile {
+#profile {
   width: 90px;
   height: 25px;
   border-radius: 10px;
@@ -357,13 +356,18 @@ h6{
   margin-left: 30px;
 }
 .middlecontainer{
-  display: flex;
+  /* display: flex; */
   /* justify-content: space-between; */
-  height: 200px;
-  margin-top: 20px;
-  margin-left: 60px;
+  height: 230px;
+  margin-top:-5px;
+  margin-left: 40px;
   margin-bottom: -100px;
-
+  width: 200px;
+  border:2px solid gray;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  
 }
 .four{
   background-color: rgb(159, 159, 249);
@@ -422,7 +426,6 @@ h3 {
   border-radius: 10px;
   align-items: center;
   justify-content: center;
-  /* text-align: center */
   color: white;
 }
 
@@ -431,16 +434,7 @@ h3 {
   justify-content: space-between;
   margin-left: 30px;
   margin-top: 350px;
-
 }
-/* .plane {
-  width: 250px;
-  height: 50px;
-  border-radius: 10px;
-  background-color: rgb(244, 244, 238);
-  margin-top: 5px;
-  display:  flex;
-} */
 .planepic{
   width: 40px;
   height: 40px;
@@ -452,15 +446,6 @@ h3 {
   
 }
 
-/* .phone {
-  width: 250px;
-  height: 50px;
-  border-radius: 10px;
-  background-color: rgb(248, 248, 231);
-  margin-top: 10px;
-  display:  flex;
-
-} */
 h6 {
   margin-bottom: 20px;
 }
@@ -474,8 +459,55 @@ h6 {
   margin-right: 10px;
   position: fixed;
 }
+.searching {
+  width: 40px;
+  height:20px;
+  background-color:purple;
+  align-items:center
+}
+.employees1{
+  background-color:red;
+  color:blue;
+  display:flex;
+  width: 250px;
+  margin-left:90px;
+  align-items:center;
+  justify-content:center;
+  padding:5px;
+}
+.employeespic{
+  width:40px;
+  height:40px;
+  background-color:white;
+  border-radius:100%;
+  margin-left:40px;
 
+}
+.invite {
+  width: 50px;
+  height:40px;
+  margin-left:50px;
+}
+.details{
+  width:200px;
+  height:40px;
+  background-color:blue;
+  margin-left:20px;
+}
+.add {
+  width: 20px;
+  height:20px;
+  background-color:blue;
+  border-radius: 100%;
+}
+.delete {
+  width: 20px;
+  height:20px;
+  background-color:orange;
+  border-radius: 100%;
+}
 .employees {
+  background-color:red;
   width: 250px;
   height: 50px;
   border-radius: 10px;
@@ -563,7 +595,8 @@ button{
   background-color: rgba(0, 0, 255, 0.349);
   width: 100px;
   height: 40px;
-  margin-left: 300px;
+  margin-left: 170px;
+  margin-top:40px;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -571,6 +604,7 @@ button{
   border: 2px solid gray;
 }
 .display{
+  display: flex;
   background-color: rgba(0, 0, 255, 0.164);
   border-radius: 20px;
   height: 435px;
@@ -580,6 +614,10 @@ button{
   border-bottom: none;
   border-right: none;
   border-left: none;
+}
+.displayhere{
+   /* display: none; */
+   display:flex;
 }
 .Help {
   background-color: antiquewhite;
