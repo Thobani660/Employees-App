@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import EmployeeForm from "./form";
-import Signin from "./signin";
+
 import SearchHistory from './search';
 
 function Side(){
@@ -92,7 +91,9 @@ function Side(){
                                                         onChange={handleChange} 
                                                         name="Position"   
                                                         className='middleinput' 
-                                                        type="text" />
+                                                        type="text" 
+                                                        style={{marginLeft:"30px"}}
+                                                        />
 
                                                     <div class="middlecontainer">
                                                             <div>
@@ -100,17 +101,17 @@ function Side(){
                                                                 <input type="text" value={formData.Id} id="Idnumber"  onChange={handleChange} className='position' placeholder={"ID number"} />
                                                             </div>
                                                             <div>
-                                                                <input type="text" value={formData.Phone} id="Call" onChange={handleChange} name="Phone"   className='position' placeholder={"Phone number"} />
-                                                                <input type="text" value={formData.Fax} id="fax" onChange={handleChange} name="Fax"   className='position' placeholder={"Fax"} />
+                                                                <input type="text" value={formData.Phone} id="Call"   onChange={handleChange} name="Phone"   className='position' placeholder={"Phone number"} />
+                                                                {/* <input type="text" value={formData.Fax} id="fax" onChange={handleChange} name="Fax"   className='position' placeholder={"Fax"} /> */}
                                                             </div>
                                                         
                                                     </div>
-                                                    <button  className="Submit" >Update</button>
+                                                    <button  className="Submit" style={{marginLeft:"50px",width:"150px",height:"40px"}} >Update</button>
                                     </div>
                            </form>
-                           <div>
-                                <h1>hello</h1>
-                                <div className="employees1">
+                           <div style={{marginLeft:"200px",marginTop:"30px"}}>
+                                {/* <h1>hello</h1> */}
+                                <div className="employees1" style={{borderRadius:"10px",height:"50px",padding:"10px"}}>
                                     <div className='employeespic'>
                                     <div><img src="" alt="" /></div>
                                     </div>

@@ -17,19 +17,20 @@ const SearchHistory = () => {
     setInput('');
   };
   return (
-    <div>
+    <div className='searchdiv'>
          <input  
                             className='search' 
                             defaultValue={"Search"} 
                             type="search" 
-                           
+                            
                             value={input}
                             onChange={handleInputChange}
                     />
       {/* <input type="text" value={input} onChange={handleInputChange} /> */}
       <button 
             className='searching'
-            onClick={saveToStorage}>Save
+            onClick={saveToStorage}>
+            <span class="material-symbols-light--search"></span>
       </button>
       <div>
         {/* <h3>Search History:</h3> */}

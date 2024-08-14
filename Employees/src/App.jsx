@@ -5,8 +5,7 @@ import './App.css'
 import Aside from './components/aside'
 import Side from './components/side'
 import Signin from './components/signin'
-import EmployeeForm from './components/form'
-import SearchHistory from './components/search'
+
 // import Maincontainer from './components/maincontainer'
 function App() {
   const [count, setCount] = useState(0)

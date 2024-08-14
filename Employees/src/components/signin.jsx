@@ -47,7 +47,7 @@ function Signin(){
             alignItems:"center",
             justifyContent:"center",
             textAlign:"center",
-            borderRadius:"20px"
+            // borderRadius:"20px"
             
           }}
         >
