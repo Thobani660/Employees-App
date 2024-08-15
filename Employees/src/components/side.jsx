@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-
-import SearchHistory from './search';
+import { addBook } from './addEmployees';
+// import SearchHistory from './search';
 
 function Side(){
-
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -14,42 +13,38 @@ function Side(){
         Call:'',
         Fax:'',
       });
-    
+      addBook(formData)
+        // setNewOb([...newOb,formData]);
+      localStorage.setItem("formData", JSON.stringify(formData));
+    //   console.log(formData,"llll");
+
+
       const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevData => ({
           ...prevData,
           [name]: value
+          
         }));
+        
       };
+      
     
       const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Employee Form:', formData);
+      alert("jey")
+        localStorage.setItem("formData",JSON.stringify(formData))
+        // console.log(formData,"form data")
       };
 
-    // localStorage.setItem("name","Thobani")
-    // console.log(localStorage.getItem("name"));
-
-    // localStorage.setItem('search');
-    // localStorage.getItem("search")
-    
-    // localStorage.setItem("search","searching");
-    // console.log(localStorage.getItem("search"));
-    // const obj = {"name","",surname",}
-
+   
 
     return(
 <>
 <div className="side">
                 <div className="nav">
-                    <SearchHistory/>
-                    {/* <input  
-                            className='search' 
-                            defaultValue={"Search"} 
-                            type="search" 
-                            placeholder="alungile"
-                    /> */}
+                    {/* <SearchHistory/> */}
+                 
                     <div 
                         className="settings">
                             <span className="material-symbols--notifications">
@@ -72,7 +67,6 @@ function Side(){
 
              
                     <div className='display'>
-                        {/* <EmployeeForm></EmployeeForm> */}
                        <div className="displayhere">
                            <form onSubmit={handleSubmit} >
                                     <div>
@@ -106,11 +100,10 @@ function Side(){
                                                             </div>
                                                         
                                                     </div>
-                                                    <button  className="Submit" style={{marginLeft:"50px",width:"150px",height:"40px"}} >Update</button>
+                                                    <button  onSubmit={handleSubmit} formData={formData} className="Submit" style={{marginLeft:"50px",width:"150px",height:"40px"}} >Update</button>
                                     </div>
                            </form>
                            <div style={{marginLeft:"200px",marginTop:"30px"}}>
-                                {/* <h1>hello</h1> */}
                                 <div className="employees1" style={{borderRadius:"10px",height:"50px",padding:"10px"}}>
                                     <div className='employeespic'>
                                     <div><img src="" alt="" /></div>
