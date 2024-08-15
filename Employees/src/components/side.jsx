@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import { addBook } from './addEmployees';
+import { useState, useEffect } from 'react';
 // import SearchHistory from './search';
 
 function Side(){
@@ -18,6 +19,13 @@ function Side(){
       localStorage.setItem("formData", JSON.stringify(formData));
     //   console.log(formData,"llll");
 
+    useEffect(() => {
+        const storedFormData = localStorage.getItem('formData');
+        if (storedFormData) {
+          setFormData(JSON.parse(storedFormData));
+        }
+      }, []);
+
 
       const handleChange = (e) => {
         const { name, value } = e.target;
@@ -32,7 +40,7 @@ function Side(){
     
       const handleSubmit = (e) => {
         e.preventDefault();
-        addBook(!formData);
+        addBook(formData);
 
      
         localStorage.setItem("formData",JSON.stringify(formData))

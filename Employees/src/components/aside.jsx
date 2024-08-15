@@ -11,7 +11,7 @@ function Aside(){
 
 
     let profileDisplay = localStorage.getItem("formData");
-    console.log(profileDisplay,"size ngomsebenzi")
+    // console.log(profileDisplay,"size ngomsebenzi")
 
     return(
 <>

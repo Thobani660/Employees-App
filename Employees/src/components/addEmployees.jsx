@@ -14,5 +14,5 @@ export function addBook(formData) {
 
     adding.push(formData);
     localStorage.setItem("formData", JSON.stringify(adding));
-    console.log(adding, "this");
+    // console.log(adding, "this");
 }
