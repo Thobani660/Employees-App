@@ -5,6 +5,7 @@ import './App.css'
 import Aside from './components/aside'
 import Side from './components/side'
 import Signin from './components/signin'
+// import SearchHistory './components/search'
 
 // import Maincontainer from './components/maincontainer'
 function App() {

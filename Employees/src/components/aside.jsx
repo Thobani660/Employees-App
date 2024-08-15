@@ -10,8 +10,8 @@ function Aside(){
 
 
 
-    let profileDisplay = localStorage.getItem("formData",JSON.stringify(FormData));
-    // console.log(profileDisplay,"size ngomsebenzi")
+    let profileDisplay = localStorage.getItem("formData");
+    console.log(profileDisplay,"size ngomsebenzi")
 
     return(
 <>

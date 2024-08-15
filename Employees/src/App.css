@@ -37,6 +37,7 @@ input:hover {
 .flex-container {
   display: flex;
   background-color: rgba(0, 0, 255, 0.26);
+  box-shadow: 5px 5px 5px #726c6c;
   background-image: url("/Employees/res/C-13091__70716.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -172,6 +173,7 @@ input {
   margin-bottom: 5px;
   color: unset;
   cursor: text;
+  text-align: center;
 }
 input:hover {
   border-radius:10px;
@@ -306,11 +308,13 @@ input:hover {
   border-radius: 10px;
   background-color: rgb(24, 152, 184);
   margin-left: 80px;
-  margin-top: 65px;
+  margin-top: 69px;
   margin-bottom: -64px;
   padding: 5px;
   border: 2px solid rgb(2, 2, 180);
   cursor: pointer;
+  border-bottom: none;
+  border-top: none;
 }
 .vert:hover {
   width: 180px;
@@ -323,6 +327,8 @@ input:hover {
   padding: 5px;
   border: 2px solid rgb(2, 2, 180);
   cursor: pointer;
+  border-bottom: none;
+  border-top: none;
 
 }
 .vertpic {
@@ -481,7 +487,7 @@ h6 {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='m19.485 20.154l-6.262-6.262q-.75.639-1.725.989t-1.96.35q-2.402 0-4.066-1.663T3.808 9.503T5.47 5.436t4.064-1.667t4.068 1.664T15.268 9.5q0 1.042-.369 2.017t-.97 1.668l6.262 6.261zM9.539 14.23q1.99 0 3.36-1.37t1.37-3.361t-1.37-3.36t-3.36-1.37t-3.361 1.37t-1.37 3.36t1.37 3.36t3.36 1.37'/%3E%3C/svg%3E");
 }
 .employees1{
-  background-color:red;
+  background-color:rgb(24, 152, 184);
   color:blue;
   display:flex;
   width: 250px;
@@ -495,7 +501,7 @@ h6 {
   height:40px;
   background-color:white;
   border-radius:100%;
-  margin-left:40px;
+  margin-left:20px;
 
 }
 .invite {
@@ -504,10 +510,16 @@ h6 {
   margin-left:50px;
 }
 .details{
-  width:200px;
+  width:290px;
   height:40px;
   background-color:blue;
-  margin-left:20px;
+  margin-right:-20px;
+  margin-left: 10px;
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 .add {
   width: 40px;
@@ -523,7 +535,7 @@ h6 {
   margin-top: 5px;
 }
 .employees {
-  background-color:red;
+  background-color:rgb(24, 152, 184);
   width: 250px;
   height: 50px;
   border-radius: 10px;
