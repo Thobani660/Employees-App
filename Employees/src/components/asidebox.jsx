@@ -4,7 +4,9 @@ function Asidebox({ Displaying }) {
 
     // console.log(Displaying, "here");
     const formData = JSON.parse(Displaying);
-    console.log(formData,"rrrrrr")
+    localStorage.getItem("formData")
+    console.log(formData[0],"rrrrrr")
+    
     localStorage.setItem("formData",JSON.stringify(formData))
     return (
       <div className="asidebox">

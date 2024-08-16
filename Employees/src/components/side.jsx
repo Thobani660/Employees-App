@@ -2,53 +2,58 @@
 import { addBook } from './addEmployees';
 import { useState, useEffect } from 'react';
 // import SearchHistory from './search';
-
-function Side(){
+function Side() {
+    const [employees, setEmployees] = useState([]);
     const [formData, setFormData] = useState({
+      name: '',
+      email: '',
+      Surname: '',
+      Position: '',
+      Email: '',
+      Idnumber: '',
+      Call: '',
+      Fax: '',
+    });
+  
+    useEffect(() => {
+      const storedEmployees = localStorage.getItem('employees');
+      if (storedEmployees) {
+        setEmployees(JSON.parse(storedEmployees));
+      }
+    }, []);
+  
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setFormData((prevData) => ({ ...prevData, [name]: value }));
+    };
+  
+    const handleDelete = (id) => {
+      const newEmployees = employees.filter((employee) => employee.Id !== id);
+      setEmployees(newEmployees);
+      localStorage.setItem('employees', JSON.stringify(newEmployees));
+    };
+  
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      const newEmployee = { ...formData, Id: new Date().getTime() };
+      setEmployees((prevEmployees) => [...prevEmployees, newEmployee]);
+      localStorage.setItem('formData', JSON.stringify([employees]));
+      setFormData({
         name: '',
         email: '',
-        Surname:'',
-        Position:'',
-        Email:'',
-        Idnumber:'',
-        Call:'',
-        Fax:'',
+        Surname: '',
+        Position: '',
+        Email: '',
+        Idnumber: '',
+        Call: '',
+        Fax: '',
       });
-    //   addBook(formData)
-        // setNewOb([...newOb,formData]);
-      localStorage.setItem("formData", JSON.stringify(formData));
-    //   console.log(formData,"llll");
-
-    useEffect(() => {
-        const storedFormData = localStorage.getItem('formData');
-        if (storedFormData) {
-          setFormData(JSON.parse(storedFormData));
-        }
-      }, []);
-
-
-      const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prevData => ({
-          ...prevData,
-          [name]: value
-          
-        }));
-        
-      };
-      
-    
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        addBook(formData);
-
-     
-        localStorage.setItem("formData",JSON.stringify(formData))
-        // console.log(formData,"form data")
-      };
+    };
 
    
-
+    //   const formDatafriends = JSON.parse(Displaying);
+    //   console.log(formDatafriends,"rrrrrr")
+    //   localStorage.setItem("formData",JSON.stringify(formData))
     return(
 <>
 <div className="side">
@@ -117,21 +122,16 @@ function Side(){
                                     <button  onSubmit={handleSubmit}  className="Submit" style={{marginLeft:"50px",width:"150px",height:"40px"}} >Submit</button>
                                 </div>
                            </form>
-                           <div style={{marginLeft:"200px",marginTop:"30px"}}>
-
-                                <div className="employees1" style={{borderRadius:"10px",height:"50px",padding:"10px"}}>
-                                    <div className='employeespic'>
-                                    <div>img</div>
-                                    </div>
-                                    <div className="details">
-                                                        <h5 style={{marginBottom:"30px"}}> {formData.name}</h5>
-                                    </div>
-                                    <div className="invite">
-                                            <div className="add" style={{color:"white",alignItems:"center",justifyContent:"center",textAlign:"center"}}>+</div> 
-                                            <div className="delete" style={{color:"white",alignItems:"center",justifyContent:"center",textAlign:"center"}} >-</div>        
-                                    </div>
-                                </div>
-                           </div>
+                           <div className='NewEmployee' style={{ marginLeft: '200px', marginTop: '30px', backgroundColor: 'red' }}>
+      {employees.map((employee) => (
+        <div key={employee.Id}>
+          <h5>{employee.name}</h5>
+          <button className="delete" onClick={() => handleDelete(employee.Id)}>
+            -
+          </button>
+        </div>
+      ))}
+    </div>
                          
                         </div>
 
