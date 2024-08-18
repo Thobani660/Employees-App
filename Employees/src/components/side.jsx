@@ -21,6 +21,8 @@ function Side() {
         setEmployees(JSON.parse(storedEmployees));
       }
     }, []);
+
+    console.log(employees,"hwhw")
   
     const handleChange = (e) => {
       const { name, value } = e.target;
@@ -37,7 +39,8 @@ function Side() {
       e.preventDefault();
       const newEmployee = { ...formData, Id: new Date().getTime() };
       setEmployees((prevEmployees) => [...prevEmployees, newEmployee]);
-      localStorage.setItem('formData', JSON.stringify([employees]));
+      // addBook(!formData)
+      localStorage.setItem('formData', JSON.stringify(formData));
       setFormData({
         name: '',
         email: '',
@@ -48,6 +51,24 @@ function Side() {
         Call: '',
         Fax: '',
       });
+    };
+
+    const retrievData = () =>{
+       const storedFormData = localStorage.getItem("formData");
+       if (storedFormData){
+        const formData = JSON.parse(storedFormData);
+        setFormData({
+          name: formData[0].name,
+          email:  formData[0].email,
+          Surname:  formData[0].Surname,
+          Position:  formData[0].position,
+          Email: formData[0].Email,
+          Idnumber:  formData[0].Idnumber,
+          Call:  formData[0].Call,
+          Fax:  formData[0].Fax,
+        })
+       }
+       alert("heythere")
     };
 
    
@@ -120,17 +141,22 @@ function Side() {
                                                         
                                             </div>
                                     <button  onSubmit={handleSubmit}  className="Submit" style={{marginLeft:"50px",width:"150px",height:"40px"}} >Submit</button>
+                                    <button onClick={retrievData}>
+
+update
+</button>   
                                 </div>
                            </form>
                            <div className='NewEmployee' style={{ marginLeft: '200px', marginTop: '30px', backgroundColor: 'red' }}>
-      {employees.map((employee) => (
-        <div key={employee.Id}>
-          <h5>{employee.name}</h5>
-          <button className="delete" onClick={() => handleDelete(employee.Id)}>
-            -
-          </button>
-        </div>
-      ))}
+                                {employees.map((employee) => (
+                                  <div key={employee.Id} style={{width:"200px"}}>
+                                    <h5 style={{width:"200px"}}>{employee.name}</h5>
+                                    <button style={{widt:"200px",heightL:"30px"}} onClick={() => handleDelete(employee.Id)}>
+                                      -
+                                    </button >
+                                   
+                                  </div>
+                                ))}
     </div>
                          
                         </div>

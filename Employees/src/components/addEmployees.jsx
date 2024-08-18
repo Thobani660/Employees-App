@@ -13,6 +13,6 @@ export function addBook(formData) {
     let adding = existingData ? JSON.parse(existingData) : [];
 
     adding.push(formData);
-    localStorage.setItem("formData", JSON.stringify(adding));
+    localStorage.setItem("formData", JSON.stringify(formData));
     // console.log(adding, "this");
 }
