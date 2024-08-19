@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react';
 // import SearchHistory from './search';
 function Side() {
     const [employees, setEmployees] = useState([]);
+
     const [formData, setFormData] = useState({
-      name: '',
+      name:'',
       email: '',
       Surname: '',
       Position: '',
@@ -15,42 +16,48 @@ function Side() {
       Fax: '',
     });
   
-    useEffect(() => {
-      const storedEmployees = localStorage.getItem('employees');
-      if (storedEmployees) {
-        setEmployees(JSON.parse(storedEmployees));
-      }
-    }, []);
+
+    // JSON.parse(localStorage.getItem("formData"));
+
+
+    // useEffect(() => {
+    //   const storedEmployees = localStorage.getItem('employees');
+    //   if (storedEmployees) {
+    //     setEmployees(JSON.parse(storedEmployees));
+    //   }
+    // }, []);
 
     console.log(employees,"hwhw")
   
     const handleChange = (e) => {
       const { name, value } = e.target;
-      setFormData((prevData) => ({ ...prevData, [name]: value }));
+      setFormData({ ...formData, [name]: value });
+      
     };
   
     const handleDelete = (id) => {
       const newEmployees = employees.filter((employee) => employee.Id !== id);
       setEmployees(newEmployees);
-      localStorage.setItem('employees', JSON.stringify(newEmployees));
+      // localStorage.setItem('employees', JSON.stringify(newEmployees));
     };
   
     const handleSubmit = (e) => {
       e.preventDefault();
-      const newEmployee = { ...formData, Id: new Date().getTime() };
-      setEmployees((prevEmployees) => [...prevEmployees, newEmployee]);
-      // addBook(!formData)
-      localStorage.setItem('formData', JSON.stringify(formData));
-      setFormData({
-        name: '',
-        email: '',
-        Surname: '',
-        Position: '',
-        Email: '',
-        Idnumber: '',
-        Call: '',
-        Fax: '',
-      });
+      // const newEmployee = { ...formData, Id: new Date().getTime() };
+      // setEmployees((prevEmployees) => [...prevEmployees, newEmployee]);
+      localStorage.setItem('formData', JSON.stringify([formData]));
+      addBook(formData)
+      // addbook(formData);
+      // setFormData({
+      //   name: '',
+      //   email: '',
+      //   Surname: '',
+      //   Position: '',
+      //   Email: '',
+      //   Idnumber: '',
+      //   Call: '',
+      //   Fax: '',
+      // });
     };
 
     const retrievData = () =>{
@@ -74,7 +81,6 @@ function Side() {
    
     //   const formDatafriends = JSON.parse(Displaying);
     //   console.log(formDatafriends,"rrrrrr")
-    //   localStorage.setItem("formData",JSON.stringify(formData))
     return(
 <>
 <div className="side">
@@ -83,6 +89,7 @@ function Side() {
                  
                     <div 
                         className="settings">
+                          
                             <span className="material-symbols--notifications">
                             </span>
                     </div>
@@ -110,7 +117,7 @@ function Side() {
                                         <div className="middlecontainer">
                                                     <div>
                                                             <label ></label><br/>
-                                                            <input value={formData.name} id="name" onChange={handleChange} name="name" className='name' placeholder={"Full Name"} type="text" />
+                                                            <input value={formData.name} name="name" id="name" onChange={handleChange} className='name' placeholder={"Full Name"} type="text" />
                                                             <input value={formData.Surname} id="lastname" onChange={handleChange} name="Surname"  className='lastname' placeholder={"Surname"} type="text" />
                                                     </div>  
                                                     <input 

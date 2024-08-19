@@ -9,10 +9,62 @@
 // }
 
 export function addBook(formData) {
-    let existingData = localStorage.getItem("formData");
-    let adding = existingData ? JSON.parse(existingData) : [];
+    // console.log(formData,"lllllllll")
+    // localStorage.getItem("formData");
+    
+    const passing =  JSON.parse(localStorage.getItem("formData"));
+    passing.push(formData)
 
-    adding.push(formData);
-    localStorage.setItem("formData", JSON.stringify(formData));
+    localStorage.setItem("formData",JSON.stringify(formData)) ;
+    console.log(passing,"hello")
+    // let adding = existingData ? JSON.parse(existingData) : [];
+
+    // adding.push(formData);
+    // localStorage.setItem("formData", JSON.stringify(formData));
     // console.log(adding, "this");
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
