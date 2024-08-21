@@ -1,28 +1,33 @@
+import React, { useState, useEffect } from 'react';
 
-function Asidebox({ Displaying }) {
+function Asidebox() {
+  const [formData, setFormData] = useState({});
 
+  useEffect(() => {
+    const storedFormData = localStorage.getItem("formData");
+    if (storedFormData) {
+      setFormData(JSON.parse(storedFormData));
+    }
+  }, []);
 
-    // console.log(Displaying, "here");
-    // const formData = JSON.parse(Displaying);
-    // let newData = JSON.parse(localStorage.getItem("formData"))
-    // localStorage.("formData")
-    // console.log(formData[0],"rrrrrr")acd
-    
-    // localStorage.setItem("formData",JSON.stringify(formData))
-    return (
-      <div className="asidebox">
-         {/* <div className="vert">{newData.name}</div> */}
-                        {/* <div className="vert">{newData.Surname}</div> */}
-                        {/* <div className="vert">{newData.Position}</div>
-                        <div className="vert">{newData.Email}</div>
-                        <div className="vert">{newData.Id}</div>
-                        <div className="vertpic"> <br/>you need help<span className="ic--outline-live-help"></span>
-                            <br />Click the button below
-                            <br /><button  className="Help">help</button>
-                        </div> */}
-
-        
+  return (
+    <div className="asidebox">
+      <div className="vert">{formData.name}</div>
+      <div className="vert">{formData.Surname}</div>
+      <div className="vert">{formData.Position}</div>
+      <div className="vert">{formData.Email}</div>
+      <div className="vert">{formData.Idnumber}</div>
+      <div className="vertpic">
+        <br />
+        you need help
+        <span className="ic--outline-live-help"></span>
+        <br />
+        Click the button below
+        <br />
+        <button className="Help">help</button>
       </div>
-    );
-  }
-   export default Asidebox
+    </div>
+  );
+}
+
+export default Asidebox;

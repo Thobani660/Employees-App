@@ -28,6 +28,16 @@ function Side() {
     // }, []);
 
     console.log(employees,"hwhw")
+
+    const [isUpdateFormVisible, setIsUpdateFormVisible] = useState(false);
+  const [updatedFormData, setUpdatedFormData] = useState({});
+
+  useEffect(() => {
+    const storedEmployees = localStorage.getItem('employees');
+    if (storedEmployees) {
+      setEmployees(JSON.parse(storedEmployees));
+    }
+  }, []);
   
     const handleChange = (e) => {
       const { name, value } = e.target;
@@ -36,49 +46,48 @@ function Side() {
     };
   
     const handleDelete = (id) => {
-      const newEmployees = employees.filter((employee) => employee.Id !== id);
-      setEmployees(newEmployees);
-      // localStorage.setItem('employees', JSON.stringify(newEmployees));
-    };
+        const newEmployees = employees.filter((employee) => employee.Id !== id);
+        setEmployees(newEmployees);
+        localStorage.setItem('employees', JSON.stringify(newEmployees));
+      };
   
     const handleSubmit = (e) => {
-      e.preventDefault();
-      // const newEmployee = { ...formData, Id: new Date().getTime() };
-      // setEmployees((prevEmployees) => [...prevEmployees, newEmployee]);
-      localStorage.setItem('formData', JSON.stringify([formData]));
-      addBook(formData)
-      // addbook(formData);
-      // setFormData({
-      //   name: '',
-      //   email: '',
-      //   Surname: '',
-      //   Position: '',
-      //   Email: '',
-      //   Idnumber: '',
-      //   Call: '',
-      //   Fax: '',
-      // });
-    };
-
-    const retrievData = () =>{
-       const storedFormData = localStorage.getItem("formData");
-       if (storedFormData){
-        const formData = JSON.parse(storedFormData);
+        e.preventDefault();
+        const newEmployee = { ...formData, Id: new Date().getTime() };
+        setEmployees((prevEmployees) => [...prevEmployees, newEmployee]);
+        localStorage.setItem('formData', JSON.stringify(formData));
         setFormData({
-          name: formData[0].name,
-          email:  formData[0].email,
-          Surname:  formData[0].Surname,
-          Position:  formData[0].position,
-          Email: formData[0].Email,
-          Idnumber:  formData[0].Idnumber,
-          Call:  formData[0].Call,
-          Fax:  formData[0].Fax,
-        })
-       }
-       alert("heythere")
-    };
+          name: '',
+          email: '',
+          Surname: '',
+          Position: '',
+          Email: '',
+          Idnumber: '',
+          Call: '',
+          Fax: '',
+        });
+      };
 
-   
+    const retrievData = () => {
+        const storedFormData = localStorage.getItem("formData");
+        if (storedFormData) {
+          const formData = JSON.parse(storedFormData);
+          setUpdatedFormData(formData);
+          setIsUpdateFormVisible(true);
+        }
+        alert("heythere");
+      };
+
+    const handleUpdateChange = (e) => {
+        const { name, value } = e.target;
+        setUpdatedFormData((prevData) => ({ ...prevData, [name]: value }));
+      };
+    
+      const handleUpdateSubmit = (e) => {
+        e.preventDefault();
+        localStorage.setItem('formData', JSON.stringify(updatedFormData));
+        setIsUpdateFormVisible(false);
+      };
     //   const formDatafriends = JSON.parse(Displaying);
     //   console.log(formDatafriends,"rrrrrr")
     return(
@@ -154,6 +163,37 @@ update
 </button>   
                                 </div>
                            </form>
+
+                           {isUpdateFormVisible && (
+              <form onSubmit={handleUpdateSubmit}>
+                <h4>Update Form</h4>
+                <div>
+                  <label>Full Name</label>
+                  <input
+                    value={updatedFormData.name}
+                    id="name"
+                    onChange={handleUpdateChange}
+                    name="name"
+                    className="name"
+                    type="text"
+                  />
+                </div>
+                <div>
+                  <label>Surname</label>
+                  <input
+                    value={updatedFormData.Surname}
+                    id="Surname"
+                    onChange={handleUpdateChange}
+                    name="Surname"
+                    className="Surname"
+                    type="text"
+                  />
+                </div>
+                {/* ... */}
+                <button type="submit">Update</button>
+              </form>
+            )}
+                           
                            <div className='NewEmployee' style={{ marginLeft: '200px', marginTop: '30px', backgroundColor: 'red' }}>
                                 {employees.map((employee) => (
                                   <div key={employee.Id} style={{width:"200px"}}>
