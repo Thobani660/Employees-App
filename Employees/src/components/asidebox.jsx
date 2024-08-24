@@ -1,22 +1,49 @@
 import React, { useState, useEffect } from 'react';
 
-function Asidebox() {
-  const [formData, setFormData] = useState({});
+function Asidebox({ Displaying, EmployeesData }) {
+  const [employeesArray, setEmployeesArray] = useState(EmployeesData || (localStorage?.getItem("employeesData") ? JSON.parse(localStorage.getItem("employeesData")) : []));
 
   useEffect(() => {
-    const storedFormData = localStorage.getItem("formData");
-    if (storedFormData) {
-      setFormData(JSON.parse(storedFormData));
-    }
+    const handleStorageChange = () => {
+      const storedData = localStorage.getItem("employeesData");
+      if (storedData) {
+        const updatedEmployeesArray = JSON.parse(storedData);
+        setEmployeesArray(updatedEmployeesArray);
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
   }, []);
+
+  const handleAddEmployee = (newEmployee) => {
+    const updatedEmployeesArray = [...employeesArray, newEmployee];
+    setEmployeesArray(updatedEmployeesArray);
+    localStorage.setItem("employeesData", JSON.stringify(updatedEmployeesArray));
+  };
 
   return (
     <div className="asidebox">
-      <div className="vert">{formData.name}</div>
-      <div className="vert">{formData.Surname}</div>
-      <div className="vert">{formData.Position}</div>
-      <div className="vert">{formData.Email}</div>
-      <div className="vert">{formData.Idnumber}</div>
+      {employeesArray.length > 0 ? (
+        <div>
+          <div className="vert">{employeesArray[employeesArray.length - 1].name}</div>
+          <div className="vert">{employeesArray[employeesArray.length - 1].Surname}</div>
+          <div className="vert">{employeesArray[employeesArray.length - 1].Position}</div>
+          <div className="vert">{employeesArray[employeesArray.length - 1].Email}</div>
+          <div className="vert">{employeesArray[employeesArray.length - 1].Idnumber}</div>
+        </div>
+      ) : (
+        <div>
+        <div className="vert"></div>
+        <div className="vert"></div>
+        <div className="vert"></div>
+        <div className="vert"></div>
+        <div className="vert"></div>
+      </div>
+      )}
       <div className="vertpic">
         <br />
         you need help
