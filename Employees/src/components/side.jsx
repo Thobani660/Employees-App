@@ -1,6 +1,7 @@
 
 
 import { useState, useEffect } from 'react';
+import { addBook } from './addEmployees';
 
 function Side() {
   const [employees, setEmployees] = useState([]);
@@ -12,6 +13,14 @@ function Side() {
   const [Idnumber, setIdnumber] = useState('');
   const [Call, setCall] = useState('');
   const [isUpdateFormVisible, setIsUpdateFormVisible] = useState(false);
+  const [formData, setFormData] = useState({
+      name,
+      Surname,
+      Position,
+      Email,
+      Idnumber,
+      Call,
+  })
 
   useEffect(() => {
     const storedEmployees = localStorage.getItem('employeesData');
@@ -20,10 +29,17 @@ function Side() {
     }
   }, []);
 
-  const handleUpdate = (employee) => {
-    setEmployee(employee);
-    setIsUpdateFormVisible(true);
-  };
+  // function handleChange(event){
+  //   setFormData({
+  //       ...formData,
+  //       [event.target.name]: event.target.value,
+  //   })
+  // }
+
+  // const handleUpdate = (employee) => {
+  //   setEmployee(employee);
+  //   setIsUpdateFormVisible(true);
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,6 +51,7 @@ function Side() {
       Idnumber,
       Call,
     };
+
     const newEmployees = [...employees, formData];
     setEmployees(newEmployees);
     localStorage.setItem('employeesData', JSON.stringify(newEmployees));
@@ -64,7 +81,7 @@ function Side() {
       <div className="leon">
         <div>
           <h3 style={{ textShadow: "-1px 2px 0 red" }}>WORK WEB</h3>
-          <p>apply on a new post today!</p>
+          <h1>apply on a new post today!</h1>
         </div>
         <div className="circle"></div>
       </div>
@@ -75,9 +92,9 @@ function Side() {
 {isUpdateFormVisible ? (
   <form onSubmit={handleUpdateSubmit}>
     <div>
-      <h4 style={{ textShadow: "-1px 2px 0 red", marginLeft: "80px" }}>
+      <h2 style={{ textShadow: "-1px 2px 0 gray", marginLeft: "80px" }}>
         Update Form
-      </h4>
+      </h2>
        <div className="middlecontainer">
         <div>
           <label></label>
@@ -239,12 +256,17 @@ function Side() {
     </div>
   </form>
 )}
+          <div className="NewEmployee" style={{height:"350px",backgroundColor:"red", overFlow:"auto",marginLeft: "200px", marginTop: "10px",}}>
+          <h2>MyEployeedList</h2>
 
-          <div className="NewEmployee" style={{ marginLeft: "200px", marginTop: "30px", backgroundColor: "red" }}>
             {employees.map((employee, index) => (
-              <div key={index} style={{ width: "200px" }}>
-                <h5 style={{ width: "200px" }}>{employee.name}</h5>
-                <button style={{ width: "200px", height: "30px" }} onClick={() => handleDelete(employee.name)}>
+              <div key={index} style={{ marginTop:"5px",  boxShadow:" 2px 3px 1px #726c6c"
+                ,display:"flex",borderRadius:"10px",width: "300px",height:"60px",padding:"5px", backgroundColor:"rgb(12, 12, 85)",alignItems:"center",justifyContent:"center",textAlign:"center", }}>
+                <div style={{width:"50px",height:"50px",backgroundColor:"white",borderRadius:"100%"}}></div>
+                <h4 style={{ width: "70px",color:"white",marginLeft:"70px",whiteSpace:"normal",wordWrap:"break-word", }}>{employee.name}</h4>
+                <button style={{ width: "30px", height: "10px",display:"flex",justifyContent:"center",alignItems:"center",
+                                    textAlign:"center",marginLeft:"70px",
+                backgroundColor:"red",}} onClick={() => handleDelete(employee.name)}>
                   -
                 </button>
               </div>
