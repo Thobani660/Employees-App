@@ -86,10 +86,10 @@ function Side() {
 
         <div className="leon">
           <div>
-            <h3 style={{ textShadow: "-1px 2px 0 red" }}>WORK WEB</h3>
+            <h3 style={{ textShadow: "-1px 2px 0 purple" }}>WORK WEB</h3>
             <h4>Apply on a new post today!</h4>
           </div>
-          <div className="circle"></div>
+          <div className="circle" style={{backgroundRepeat:"no-repeat",backgroundSize:"cover"}}></div>
         </div>
 
         <div className="display">
@@ -180,7 +180,7 @@ function Side() {
             ) : (
               <form onSubmit={handleSubmit}>
                 <div>
-                  <h4 style={{ textShadow: "-1px 2px 0 red", marginLeft: "80px" }}>
+                  <h4 style={{ textShadow: "-1px 2px 0 powderblue", marginLeft: "80px" }}>
                     SignUp Form
                   </h4>
                   <div className="middlecontainer">
@@ -261,8 +261,8 @@ function Side() {
                 </div>
               </form>
             )}
-            <div className="NewEmployee" style={{ height: "350px", backgroundColor: "transparent", overflow: "auto", marginLeft: "200px", marginTop: "0px" }}>
-              <h2>My Employee List</h2>
+            <div className="NewEmployee" style={{ height: "430px", backgroundColor: "transparent", overflow: "auto", marginLeft: "200px", marginTop: "0px" }}>
+              <h2 style={{position:"fixed",color:"purple"}}>My Employee List</h2>
 
               {employees.map((emp, index) => (
                 <div key={index} style={{ marginTop: "5px", boxShadow: "2px 3px 1px #726c6c", display: "flex", borderRadius: "10px", width: "300px", height: "60px", padding: "5px", backgroundColor: "rgb(12, 12, 85)", alignItems: "center", justifyContent: "center", textAlign: "center" }}>
