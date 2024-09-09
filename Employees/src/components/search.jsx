@@ -2,31 +2,34 @@ import React, { useState, useEffect } from 'react';
 
 function SearchHistory() {
   const [input, setInput] = useState('');
-  const [history, setHistory] = useState([]);
-  const [items] = useState(['Apple', 'Banana', 'Orange', 'Mango', 'Pineapple']); // Example items
-  const [filteredItems, setFilteredItems] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
 
   useEffect(() => {
-    const savedHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
-    setHistory(savedHistory);
+    const savedUsers = JSON.parse(localStorage.getItem('employeesData')) || [];
+    setUsers(savedUsers);
   }, []);
 
   useEffect(() => {
     if (input) {
-      setFilteredItems(items.filter(item => item.toLowerCase().includes(input.toLowerCase())));
+      setFilteredUsers(users.filter(user => 
+        user.name.toLowerCase().includes(input.toLowerCase())
+      ));
     } else {
-      setFilteredItems([]);
+      setFilteredUsers([]);
     }
-  }, [input, items]);
+  }, [input, users]);
 
   const handleInputChange = (e) => {
     setInput(e.target.value);
   };
 
   const saveToStorage = () => {
-    const newHistory = [...history, input];
-    setHistory(newHistory);
-    localStorage.setItem('searchHistory', JSON.stringify(newHistory));
+    // Example user data
+    const newUser = { name: input };
+    const updatedUsers = [...users, newUser];
+    setUsers(updatedUsers);
+    localStorage.setItem('employeesData', JSON.stringify(updatedUsers));
     setInput('');
   };
 
@@ -35,7 +38,7 @@ function SearchHistory() {
       <div className='searchdiv'>
         <input
           className='search'
-          placeholder="Search"
+          placeholder="Search by name"
           type="search"
           value={input}
           onChange={handleInputChange}
@@ -46,10 +49,10 @@ function SearchHistory() {
           <span className="material-symbols-light--search">search</span>
         </button>
         <div>
-          {filteredItems.length > 0 && (
+          {filteredUsers.length > 0 && (
             <ul>
-              {filteredItems.map((item, index) => (
-                <li key={index}>{item}</li>
+              {filteredUsers.map((user, index) => (
+                <li key={index}>{user.name}</li>
               ))}
             </ul>
           )}
