@@ -86,7 +86,7 @@ function Side() {
 
         <div className="leon">
           <div>
-            <h3 style={{ textShadow: "-1px 2px 0 purple" }}>WORK WEB</h3>
+            <h3 style={{ textShadow: "-1px 2px 0 purple",color:"purple" }}>WORK WEB</h3>
             <h4>Apply on a new post today!</h4>
           </div>
           <div className="circle" style={{backgroundRepeat:"no-repeat",backgroundSize:"cover"}}></div>
@@ -180,7 +180,7 @@ function Side() {
             ) : (
               <form onSubmit={handleSubmit}>
                 <div>
-                  <h4 style={{ textShadow: "-1px 2px 0 powderblue", marginLeft: "80px" }}>
+                  <h4 style={{ textShadow: "-1px 2px 0 silver", marginLeft: "80px",color:"purple" }}>
                     SignUp Form
                   </h4>
                   <div className="middlecontainer">
@@ -261,22 +261,77 @@ function Side() {
                 </div>
               </form>
             )}
-            <div className="NewEmployee" style={{ height: "430px", backgroundColor: "transparent", overflow: "auto", marginLeft: "200px", marginTop: "0px" }}>
-              <h2 style={{position:"fixed",color:"purple"}}>My Employee List</h2>
+            <div className="NewEmployee" style={{ height: "410px", backgroundColor: "transparent",padding:"5px", overflow: "auto", marginLeft: "200px", marginTop: "0px" }}>
+  <h2 style={{ position: "fixed", color: "purple",marginTop:"-50px" }}>My Employee List</h2>
 
-              {employees.map((emp, index) => (
-                <div key={index} style={{ marginTop: "5px", boxShadow: "2px 3px 1px #726c6c", display: "flex", borderRadius: "10px", width: "300px", height: "60px", padding: "5px", backgroundColor: "rgb(12, 12, 85)", alignItems: "center", justifyContent: "center", textAlign: "center" }}>
-                  <div style={{ width: "50px", height: "50px", backgroundColor: "white", borderRadius: "100%" }}></div>
-                  <h4 style={{ width: "70px", color: "white", marginLeft: "70px", whiteSpace: "normal", wordWrap: "break-word" }}>{emp.name}</h4>
-                  <button style={{ width: "30px", height: "30px", display: "flex", justifyContent: "center", alignItems: "center", textAlign: "center", marginLeft: "70px", backgroundColor: "red" }} onClick={() => handleDelete(emp.name)}>
-                    -
-                  </button>
-                  <button style={{ width: "30px", height: "30px", display: "flex", justifyContent: "center", alignItems: "center", textAlign: "center", marginLeft: "10px", backgroundColor: "blue", color: "white" }} onClick={() => handleUpdate(emp)}>
-                    Edit
-                  </button>
-                </div>
-              ))}
-            </div>
+  {employees.map((emp, index) => (
+    <div key={index} style={{
+      marginTop: "5px",
+      boxShadow: "2px 3px 1px #726c6c",
+      display: "flex",
+      borderRadius: "10px",
+      width: "300px",
+      height: "60px",
+      padding: "5px",
+      backgroundColor: "rgb(12, 12, 85)",
+      alignItems: "center",
+      justifyContent: "space-between",
+      textAlign: "center",
+      overflow: "hidden"
+    }}>
+      <div style={{
+        width: "50px",
+        height: "50px",
+        backgroundColor: "white",
+        borderRadius: "100%",
+        marginRight: "10px"
+      }}></div>
+      <h4 style={{
+        flex: "1",
+        color: "white",
+        margin: "0",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap"
+      }}>
+        {emp.name}
+      </h4>
+      <button style={{
+        width: "30px",
+        height: "30px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center",
+        marginLeft: "10px",
+        backgroundColor: "red",
+        color: "white",
+        border: "none",
+        borderRadius: "5px",
+        cursor: "pointer"
+      }} onClick={() => handleDelete(emp.name)}>
+        -
+      </button>
+      <button style={{
+        width: "30px",
+        height: "30px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center",
+        marginLeft: "10px",
+        backgroundColor: "blue",
+        color: "white",
+        border: "none",
+        borderRadius: "5px",
+        cursor: "pointer"
+      }} onClick={() => handleUpdate(emp)}>
+        Edit
+      </button>
+    </div>
+  ))}
+</div>
+
           </div>
         </div>
 
