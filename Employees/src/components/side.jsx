@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { addBook } from './addEmployees';
+import SearchHistory from './search';
 
 function Side() {
   const [employees, setEmployees] = useState([]);
@@ -68,7 +69,7 @@ function Side() {
     <>
     <div className="side">
       <div className="nav">
-        {/* <SearchHistory/> */}
+        <SearchHistory/>
         <div className="settings">
           <span className="material-symbols--notifications"></span>
         </div>
