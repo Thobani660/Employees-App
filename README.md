@@ -3,19 +3,12 @@
 <p>
    Employee Registration application with CRUD functionalities
    Search Function: Implement a search function to find employees.
- Show all employees Function: Implement a function to show all employees.
- Add Function: Implement an add function to register new employees.
- Delete Function: Implement a delete function to remove employees.
- Update Function: Implement an update function to modify employee details.
-Employee Details
-The add form must include fields for:
-Name and Surname
-Email Address
-Phone Number
-Image
-Employee Position
-ID
-Data Management
-Use Javascript data structures and algorithms
   
 </p>
+<h2> clone : https://github.com/Thobani660/Employees-App</h2>
+<h2>from Employees-App cd to Employees</h2>
+<h2>dependencies to install:
+  "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+</h2>
+<h2>run this app : npm run dev</h2>
