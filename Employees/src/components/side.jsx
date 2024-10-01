@@ -3,31 +3,44 @@ import SearchHistory from './search';
 
 function Side() {
   const [employees, setEmployees] = useState([]);
+  const [filteredEmployees, setFilteredEmployees] = useState([]);
   const [employee, setEmployee] = useState(null);
   const [name, setName] = useState('');
-  const [Surname, setSurname] = useState('');
-  const [Position, setPosition] = useState('');
-  const [Email, setEmail] = useState('');
-  const [Idnumber, setIdnumber] = useState('');
-  const [Call, setCall] = useState('');
+  const [surname, setSurname] = useState('');
+  const [position, setPosition] = useState('');
+  const [email, setEmail] = useState('');
+  const [idnumber, setIdnumber] = useState('');
+  const [call, setCall] = useState('');
   const [isUpdateFormVisible, setIsUpdateFormVisible] = useState(false);
+  const [searchInput, setSearchInput] = useState('');
 
   useEffect(() => {
     const storedEmployees = localStorage.getItem('employeesData');
     if (storedEmployees) {
-      setEmployees(JSON.parse(storedEmployees));
+      const parsedEmployees = JSON.parse(storedEmployees);
+      setEmployees(parsedEmployees);
+      setFilteredEmployees(parsedEmployees);
     }
   }, []);
+
+  const handleSearchInputChange = (event) => {
+    const searchTerm = event.target.value.toLowerCase();
+    setSearchInput(searchTerm);
+    const filtered = employees.filter(emp =>
+      emp.name.toLowerCase().includes(searchTerm)
+    );
+    setFilteredEmployees(filtered);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = {
       name,
-      Surname,
-      Position,
-      Email,
-      Idnumber,
-      Call,
+      surname,
+      position,
+      email,
+      idnumber,
+      call,
     };
 
     if (isUpdateFormVisible) {
@@ -35,16 +48,18 @@ function Side() {
         emp.name === employee.name ? formData : emp
       );
       setEmployees(updatedEmployees);
+      setFilteredEmployees(updatedEmployees);
       localStorage.setItem('employeesData', JSON.stringify(updatedEmployees));
       setIsUpdateFormVisible(false);
       setEmployee(null);
     } else {
       const newEmployees = [...employees, formData];
       setEmployees(newEmployees);
+      setFilteredEmployees(newEmployees); 
       localStorage.setItem('employeesData', JSON.stringify(newEmployees));
     }
 
-    // Clear form
+    
     setName('');
     setSurname('');
     setPosition('');
@@ -56,17 +71,18 @@ function Side() {
   const handleDelete = (name) => {
     const newEmployees = employees.filter((employee) => employee.name !== name);
     setEmployees(newEmployees);
+    setFilteredEmployees(newEmployees); 
     localStorage.setItem('employeesData', JSON.stringify(newEmployees));
   };
 
   const handleUpdate = (employeeToUpdate) => {
     setEmployee(employeeToUpdate);
     setName(employeeToUpdate.name);
-    setSurname(employeeToUpdate.Surname);
-    setPosition(employeeToUpdate.Position);
-    setEmail(employeeToUpdate.Email);
-    setIdnumber(employeeToUpdate.Idnumber);
-    setCall(employeeToUpdate.Call);
+    setSurname(employeeToUpdate.surname);
+    setPosition(employeeToUpdate.position);
+    setEmail(employeeToUpdate.email);
+    setIdnumber(employeeToUpdate.idnumber);
+    setCall(employeeToUpdate.call);
     setIsUpdateFormVisible(true);
   };
 
@@ -74,7 +90,7 @@ function Side() {
     <>
       <div className="side">
         <div className="nav">
-          <SearchHistory />
+          <SearchHistory input={searchInput} onInputChange={handleSearchInputChange} />
           <div className="settings">
             <span className="material-symbols--notifications"></span>
           </div>
@@ -86,10 +102,10 @@ function Side() {
 
         <div className="leon">
           <div>
-            <h3 style={{ textShadow: "-1px 2px 0 purple",color:"purple" }}>WORK WEB</h3>
+            <h3 style={{ textShadow: "-1px 2px 0 purple", color: "purple" }}>WORK WEB</h3>
             <h4>Apply on a new post today!</h4>
           </div>
-          <div className="circle" style={{backgroundRepeat:"no-repeat",backgroundSize:"cover"}}></div>
+          <div className="circle" style={{ backgroundRepeat: "no-repeat", backgroundSize: "cover" }}></div>
         </div>
 
         <div className="display">
@@ -102,8 +118,6 @@ function Side() {
                   </h2>
                   <div className="middlecontainer">
                     <div>
-                      <label></label>
-                      <br />
                       <input
                         value={name}
                         name="name"
@@ -114,10 +128,10 @@ function Side() {
                         type="text"
                       />
                       <input
-                        value={Surname}
+                        value={surname}
                         id="lastname"
                         onChange={(event) => setSurname(event.target.value)}
-                        name="Surname"
+                        name="surname"
                         className="lastname"
                         placeholder={"Surname"}
                         type="text"
@@ -125,10 +139,10 @@ function Side() {
                     </div>
                     <input
                       placeholder={"Position"}
-                      value={Position}
-                      id="Position"
+                      value={position}
+                      id="position"
                       onChange={(event) => setPosition(event.target.value)}
-                      name="Position"
+                      name="position"
                       className="middleinput"
                       type="text"
                       style={{
@@ -142,19 +156,19 @@ function Side() {
                     <div>
                       <input
                         type="text"
-                        value={Email}
-                        id="Email"
+                        value={email}
+                        id="email"
                         onChange={(event) => setEmail(event.target.value)}
-                        name="Email"
+                        name="email"
                         className="position"
                         placeholder={"@Email"}
                       />
                       <input
                         type="text"
-                        value={Idnumber}
-                        id="Idnumber"
+                        value={idnumber}
+                        id="idnumber"
                         onChange={(event) => setIdnumber(event.target.value)}
-                        name="Idnumber"
+                        name="idnumber"
                         className="position"
                         placeholder={"ID number"}
                       />
@@ -162,10 +176,10 @@ function Side() {
                     <div>
                       <input
                         type="text"
-                        value={Call}
-                        id="Call"
+                        value={call}
+                        id="call"
                         onChange={(event) => setCall(event.target.value)}
-                        name="Phone"
+                        name="call"
                         className="position"
                         placeholder={"Phone number"}
                       />
@@ -180,13 +194,11 @@ function Side() {
             ) : (
               <form onSubmit={handleSubmit}>
                 <div>
-                  <h4 style={{ textShadow: "-1px 2px 0 silver", marginLeft: "80px",color:"purple" }}>
+                  <h4 style={{ textShadow: "-1px 2px 0 silver", marginLeft: "80px", color: "purple" }}>
                     SignUp Form
                   </h4>
                   <div className="middlecontainer">
                     <div>
-                      <label></label>
-                      <br />
                       <input
                         value={name}
                         name="name"
@@ -197,10 +209,10 @@ function Side() {
                         type="text"
                       />
                       <input
-                        value={Surname}
+                        value={surname}
                         id="lastname"
                         onChange={(event) => setSurname(event.target.value)}
-                        name="Surname"
+                        name="surname"
                         className="lastname"
                         placeholder={"Surname"}
                         type="text"
@@ -208,10 +220,10 @@ function Side() {
                     </div>
                     <input
                       placeholder={"Position"}
-                      value={Position}
-                      id="Position"
+                      value={position}
+                      id="position"
                       onChange={(event) => setPosition(event.target.value)}
-                      name="Position"
+                      name="position"
                       className="middleinput"
                       type="text"
                       style={{
@@ -225,19 +237,19 @@ function Side() {
                     <div>
                       <input
                         type="text"
-                        value={Email}
-                        id="Email"
+                        value={email}
+                        id="email"
                         onChange={(event) => setEmail(event.target.value)}
-                        name="Email"
+                        name="email"
                         className="position"
                         placeholder={"@Email"}
                       />
                       <input
                         type="text"
-                        value={Idnumber}
-                        id="Idnumber"
+                        value={idnumber}
+                        id="idnumber"
                         onChange={(event) => setIdnumber(event.target.value)}
-                        name="Idnumber"
+                        name="idnumber"
                         className="position"
                         placeholder={"ID number"}
                       />
@@ -245,10 +257,10 @@ function Side() {
                     <div>
                       <input
                         type="text"
-                        value={Call}
-                        id="Call"
+                        value={call}
+                        id="call"
                         onChange={(event) => setCall(event.target.value)}
-                        name="Phone"
+                        name="call"
                         className="position"
                         placeholder={"Phone number"}
                       />
@@ -261,102 +273,76 @@ function Side() {
                 </div>
               </form>
             )}
-            <div className="NewEmployee" style={{ height: "410px", backgroundColor: "transparent",padding:"5px", overflow: "auto", marginLeft: "200px", marginTop: "0px" }}>
-  <h2 style={{ position: "fixed", color: "purple",marginTop:"-50px" }}>My Employee List</h2>
+            <div className="NewEmployee" style={{ height: "410px", backgroundColor: "transparent", padding: "5px", overflow: "auto", marginLeft: "200px", marginTop: "0px" }}>
+              <h2 style={{ position: "fixed", color: "purple", marginTop: "-50px" }}>My Employee List</h2>
 
-  {employees.map((emp, index) => (
-    <div key={index} style={{
-      marginTop: "5px",
-      boxShadow: "2px 3px 1px #726c6c",
-      display: "flex",
-      borderRadius: "10px",
-      width: "300px",
-      height: "60px",
-      padding: "5px",
-      backgroundColor: "rgb(12, 12, 85)",
-      alignItems: "center",
-      justifyContent: "space-between",
-      textAlign: "center",
-      overflow: "hidden"
-    }}>
-      <div style={{
-        width: "50px",
-        height: "50px",
-        backgroundColor: "white",
-        borderRadius: "100%",
-        marginRight: "10px"
-      }}></div>
-      <h4 style={{
-        flex: "1",
-        color: "white",
-        margin: "0",
-        overflow: "hidden",
-        textOverflow: "ellipsis",
-        whiteSpace: "nowrap"
-      }}>
-        {emp.name}
-      </h4>
-      <button style={{
-        width: "30px",
-        height: "30px",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        textAlign: "center",
-        marginLeft: "10px",
-        backgroundColor: "red",
-        color: "white",
-        border: "none",
-        borderRadius: "5px",
-        cursor: "pointer"
-      }} onClick={() => handleDelete(emp.name)}>
-        -
-      </button>
-      <button style={{
-        width: "30px",
-        height: "30px",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        textAlign: "center",
-        marginLeft: "10px",
-        backgroundColor: "blue",
-        color: "white",
-        border: "none",
-        borderRadius: "5px",
-        cursor: "pointer"
-      }} onClick={() => handleUpdate(emp)}>
-        Edit
-      </button>
-    </div>
-  ))}
-</div>
-
-          </div>
-        </div>
-
-        <div className='signin'>
-          <input type="text" defaultValue={"username"} />
-          <input type="password" defaultValue={"Password"} /> <br />
-          <button>login</button>
-          <button>signup</button>
-          <button>cancel</button>
-        </div>
-
-        <div className='Prof'>
-          <div className='profile image'>
-            <img src="" alt="" />
-          </div>
-          <h2>Thobani Zondi</h2>
-          <div>
-            <h5>Position
-              <br /> Gender
-              <br /> Work
-              <br /> Nextkin
-              <br /> Contact
-            </h5>
-            <button>edit</button>
-            <button>delete</button>
+              {filteredEmployees.map((emp, index) => (
+                <div key={index} style={{
+                  marginTop: "5px",
+                  boxShadow: "2px 3px 1px #726c6c",
+                  display: "flex",
+                  borderRadius: "10px",
+                  width: "300px",
+                  height: "60px",
+                  padding: "5px",
+                  backgroundColor: "rgb(12, 12, 85)",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  textAlign: "center",
+                  overflow: "hidden"
+                }}>
+                  <div style={{
+                    width: "50px",
+                    height: "50px",
+                    backgroundColor: "white",
+                    borderRadius: "100%",
+                    marginRight: "10px"
+                  }}></div>
+                  <h4 style={{
+                    flex: "1",
+                    color: "white",
+                    margin: "0",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap"
+                  }}>
+                    {emp.name}
+                  </h4>
+                  <button style={{
+                    width: "30px",
+                    height: "30px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    textAlign: "center",
+                    marginLeft: "10px",
+                    backgroundColor: "red",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "5px",
+                    cursor: "pointer"
+                  }} onClick={() => handleDelete(emp.name)}>
+                    -
+                  </button>
+                  <button style={{
+                    width: "30px",
+                    height: "30px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    textAlign: "center",
+                    marginLeft: "10px",
+                    backgroundColor: "blue",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "5px",
+                    cursor: "pointer"
+                  }} onClick={() => handleUpdate(emp)}>
+                    Edit
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
