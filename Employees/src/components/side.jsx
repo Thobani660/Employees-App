@@ -34,6 +34,13 @@ function Side() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Check for empty inputs
+    if (!name || !surname || !position || !email || !idnumber || !call) {
+      alert("Please fill in all fields before submitting.");
+      return;
+    }
+
     const formData = {
       name,
       surname,
@@ -50,6 +57,8 @@ function Side() {
       setEmployees(updatedEmployees);
       setFilteredEmployees(updatedEmployees);
       localStorage.setItem('employeesData', JSON.stringify(updatedEmployees));
+      console.log("Updated employees data:", updatedEmployees);
+      alert("Employee updated successfully!");
       setIsUpdateFormVisible(false);
       setEmployee(null);
     } else {
@@ -57,9 +66,11 @@ function Side() {
       setEmployees(newEmployees);
       setFilteredEmployees(newEmployees); 
       localStorage.setItem('employeesData', JSON.stringify(newEmployees));
+      console.log("New employees data stored:", newEmployees);
+      alert("Employee added successfully!");
     }
 
-    
+    // Reset form fields
     setName('');
     setSurname('');
     setPosition('');
@@ -73,6 +84,7 @@ function Side() {
     setEmployees(newEmployees);
     setFilteredEmployees(newEmployees); 
     localStorage.setItem('employeesData', JSON.stringify(newEmployees));
+    alert("This Employee with be deleted permanently!!!")
   };
 
   const handleUpdate = (employeeToUpdate) => {
@@ -145,10 +157,6 @@ function Side() {
                       name="position"
                       className="middleinput"
                       type="text"
-                      style={{
-                        marginLeft: "20px",
-                        marginTop: "0px",
-                      }}
                     />
                   </div>
 
@@ -198,7 +206,7 @@ function Side() {
                     SignUp Form
                   </h4>
                   <div className="middlecontainer">
-                    <div>
+                    <div style={{ flex: 1 }}>
                       <input
                         value={name}
                         name="name"
@@ -226,15 +234,11 @@ function Side() {
                       name="position"
                       className="middleinput"
                       type="text"
-                      style={{
-                        marginLeft: "20px",
-                        marginTop: "0px",
-                      }}
                     />
                   </div>
 
                   <div className="middlecontainer">
-                    <div>
+                    <div style={{ flex: 1 }}>
                       <input
                         type="text"
                         value={email}
@@ -254,7 +258,7 @@ function Side() {
                         placeholder={"ID number"}
                       />
                     </div>
-                    <div>
+                    <div style={{ flex: 1 }}>
                       <input
                         type="text"
                         value={call}
@@ -267,14 +271,14 @@ function Side() {
                     </div>
                   </div>
 
-                  <button className="Submit" style={{ marginLeft: "50px", width: "150px", height: "40px" }}>
+                  <button className="Submit" style={{ marginLeft: "50px", width: "150px", height: "40px", color: "white", marginTop: "0px" }}>
                     Submit
                   </button>
                 </div>
               </form>
             )}
             <div className="NewEmployee" style={{ height: "410px", backgroundColor: "transparent", padding: "5px", overflow: "auto", marginLeft: "200px", marginTop: "0px" }}>
-              <h2 style={{ position: "fixed", color: "purple", marginTop: "-50px" }}>My Employee List</h2>
+              <h2 style={{ position: "fixed", color: "navy", marginTop: "-50px" }}>My Employee List</h2>
 
               {filteredEmployees.map((emp, index) => (
                 <div key={index} style={{
@@ -322,7 +326,7 @@ function Side() {
                     borderRadius: "5px",
                     cursor: "pointer"
                   }} onClick={() => handleDelete(emp.name)}>
-                    -
+                    delete
                   </button>
                   <button style={{
                     width: "30px",

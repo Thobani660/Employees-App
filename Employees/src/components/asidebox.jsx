@@ -1,15 +1,23 @@
 import React, { useState, useEffect } from 'react';
 
-function Asidebox({ Displaying, EmployeesData }) {
-  const [employeesArray, setEmployeesArray] = useState(EmployeesData || (localStorage?.getItem("employeesData") ? JSON.parse(localStorage.getItem("employeesData")) : []));
+function Asidebox() {
+  const [lastEmployee, setLastEmployee] = useState(null);
 
   useEffect(() => {
-    const handleStorageChange = () => {
+    const fetchLastEmployee = () => {
       const storedData = localStorage.getItem("employeesData");
       if (storedData) {
-        const updatedEmployeesArray = JSON.parse(storedData);
-        setEmployeesArray(updatedEmployeesArray);
+        const employeesArray = JSON.parse(storedData);
+        const lastEmployee = employeesArray[employeesArray.length - 1];
+        setLastEmployee(lastEmployee);
       }
+    };
+
+    fetchLastEmployee();
+
+    // Update the last employee when local storage changes
+    const handleStorageChange = () => {
+      fetchLastEmployee();
     };
 
     window.addEventListener('storage', handleStorageChange);
@@ -19,39 +27,28 @@ function Asidebox({ Displaying, EmployeesData }) {
     };
   }, []);
 
-  const handleAddEmployee = (newEmployee) => {
-    const updatedEmployeesArray = [...employeesArray, newEmployee];
-    setEmployeesArray(updatedEmployeesArray);
-    localStorage.setItem("employeesData", JSON.stringify(updatedEmployeesArray));
-  };
-
   return (
     <div className="asidebox">
-      {employeesArray.length > 0 ? (
+      {lastEmployee ? (
         <div>
-          <div className="vert">{employeesArray[employeesArray.length - 1].name}</div>
-          <div className="vert">{employeesArray[employeesArray.length - 1].Surname}</div>
-          <div className="vert">{employeesArray[employeesArray.length - 1].Position}</div>
-          <div className="vert">{employeesArray[employeesArray.length - 1].Email}</div>
-          <div className="vert">{employeesArray[employeesArray.length - 1].Idnumber}</div>
+          <div className="vert"> {lastEmployee.name}</div>
+          <div className="vert"> {lastEmployee.surname}</div>
+          <div className="vert"> {lastEmployee.position}</div>
+          <div className="vert"> {lastEmployee.email}</div>
+          <div className="vert"> {lastEmployee.idnumber}</div>
         </div>
       ) : (
         <div>
-        <div className="vert"></div>
-        <div className="vert"></div>
-        <div className="vert"></div>
-        <div className="vert"></div>
-        <div className="vert"></div>
-      </div>
+          <div className="vert">No employee data available</div>
+        </div>
       )}
       <div className="vertpic">
         <br />
-        you need help
-        <span className="ic--outline-live-help"></span>
+        Do you need help? <span className="ic--outline-live-help"></span>
         <br />
         Click the button below
         <br />
-        <button className="Help">help</button>
+        <button className="Help">Help</button>
       </div>
     </div>
   );
