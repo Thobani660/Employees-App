@@ -114,8 +114,8 @@ function Side() {
 
         <div className="leon">
           <div>
-            <h3 style={{ textShadow: "-1px 2px 0 purple", color: "purple" }}>WORK WEB</h3>
-            <h4>Apply on a new post today!</h4>
+            <h2 style={{ textShadow: "-1px 2px 0 red", color: "white",width:"400px" }}>welcome to theEmployees Application</h2>
+            <h4 style={{color:"#7DF9FF"}}> you can add,delete or seach  Employee</h4>
           </div>
           <div className="circle" style={{ backgroundRepeat: "no-repeat", backgroundSize: "cover" }}></div>
         </div>
@@ -125,7 +125,7 @@ function Side() {
             {isUpdateFormVisible ? (
               <form onSubmit={handleSubmit}>
                 <div>
-                  <h2 style={{ textShadow: "-1px 2px 0 gray", marginLeft: "80px" }}>
+                  <h2 style={{ textShadow: "-1px 2px 0 #7DF9FF", marginLeft: "80px",color:"white" }}>
                     Update Form
                   </h2>
                   <div className="middlecontainer">
@@ -202,7 +202,7 @@ function Side() {
             ) : (
               <form onSubmit={handleSubmit}>
                 <div>
-                  <h4 style={{ textShadow: "-1px 2px 0 silver", marginLeft: "80px", color: "purple" }}>
+                  <h4 style={{ textShadow: "-1px 2px 0 red", marginLeft: "80px", color: "white" }}>
                     SignUp Form
                   </h4>
                   <div className="middlecontainer">
@@ -286,7 +286,7 @@ function Side() {
                   boxShadow: "2px 3px 1px #726c6c",
                   display: "flex",
                   borderRadius: "10px",
-                  width: "300px",
+                  width: "350px",
                   height: "60px",
                   padding: "5px",
                   backgroundColor: "rgb(12, 12, 85)",

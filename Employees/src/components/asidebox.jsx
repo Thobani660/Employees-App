@@ -38,8 +38,12 @@ function Asidebox() {
           <div className="vert"> {lastEmployee.idnumber}</div>
         </div>
       ) : (
-        <div>
-          <div className="vert">No employee data available</div>
+         <div>
+          <div className="vert">No employee data </div>
+          <div className="vert"> No employee data </div>
+          <div className="vert"> No employee data </div>
+          <div className="vert"> No employee data </div>
+          <div className="vert"> No employee data </div>
         </div>
       )}
       <div className="vertpic">

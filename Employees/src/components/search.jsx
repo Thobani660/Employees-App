@@ -19,9 +19,9 @@ function SearchHistory({ input, onInputChange }) {
         onChange={onInputChange}
         style={{width:"300px"}}
       />
-      <button className='searching' onClick={handleSearchClick}>
+      <div className='searching' onClick={handleSearchClick}>
         <span className="material-symbols-light--search">search</span>
-      </button>
+      </div>
     </div>
   );
 }

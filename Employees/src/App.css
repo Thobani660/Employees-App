@@ -19,7 +19,7 @@ input {
   width: 200px;
   height: 30px;
   margin-left: 20px;
-  border: 2px solid rgba(128, 128, 128, 0.479);
+  border: 2px solid rgb(24, 152, 184);
   margin-bottom: 5px;
   color: unset;
   cursor: text;
@@ -29,14 +29,14 @@ input:hover {
   width: 200px;
   height: 30px;
   margin-left: 20px;
-  border: 2px solid rgb(56, 56, 56);
+  border: 2px solid lightgreen;
   margin-bottom: 5px;
   color: unset;
   cursor: text;
 }
 .flex-container {
   display: flex;
-  background-color: rgba(0, 0, 255, 0.26);
+  /* background-color: rgba(0, 0, 255, 0.26); */
   box-shadow: 5px 5px 5px #726c6c;
   background-image: url("/Employees/res/C-13091__70716.jpg");
   background-repeat: no-repeat;
@@ -60,8 +60,8 @@ body {
 }
 .flex-container {
   display: flex;
-  background-color: rgba(0, 0, 255, 0.26);
-  background-image: url("/Employees/res/C-13091__70716.jpg");
+  /* background-color: rgba(0, 0, 255, 0.26); */
+  background-image: url("../src/img/istockphoto-1361089194-1024x1024.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   width: 1200px;
@@ -69,7 +69,7 @@ body {
   border-radius: 30px;
   margin-left: 90px;
   /* flex-wrap: wrap; */
- border: 3px solid navy;
+ /* border: 3px solid navy; */
   font-display:inherit ;
   font-style: inherit;
   font-family:serif;
@@ -102,11 +102,12 @@ body {
 .middleinput:hover {
   border-radius:10px;
   width: 200px;
-  margin-left: 60px;
+  margin-left: 20px;
   border: 2px solid rgb(56, 56, 56);
   margin-bottom: 10px;
   color: unset;
   cursor: text;
+  padding:2px;
 }
 .material-symbols--notifications {
   display: inline-block;
@@ -188,38 +189,40 @@ input:hover {
 .search{
   border-radius:5px;
   width: 200px;
-  height: 30px;
+  height: 40px;
  margin-left: -90px;
-  border: none;
+  /* border: none; */
   margin-bottom: 5px;
   text-align: center;
   margin-right: 200px;
-  border: 2px solid rgba(128, 128, 128, 0.555);
+  border: 3px solid #7DF9FF;
   border-radius: 10px;
+  background-color: rgb(24, 152, 184);
 }
 .search:hover{
   border-radius:5px;
   width: 200px;
-  height: 30px;
+  height: 40px;
  margin-left: -90px;
-  border: none;
-  margin-bottom: 5px;
+ border: 3px solid #04777d;
+ margin-bottom: 5px;
   text-align: center;
   margin-right: 200px;
-  border: 2px solid rgba(56, 55, 55, 0.555);
   border-radius: 10px;
+  background-color: rgb(24, 152, 184);
+
 }
 .settings{
   width: 20px;
   height: 20px;
   border-radius: 100%;
   background-color: red;
-  margin-left: -100px;
+  margin-left: -90px;
   margin-right: 15px;
   justify-content: center;
   align-items: center;
   text-align: center;
-  border: 2px solid gray;
+  border: 2px solid #7DF9FF;
   cursor: pointer;
 
 }
@@ -228,12 +231,12 @@ input:hover {
   height: 20px;
   border-radius: 100%;
   background-color: rgba(255, 0, 0, 0.39);
-  margin-left: -20px;
+  margin-left: -90px;
   margin-right: 15px;
   justify-content: center;
   align-items: center;
   text-align: center;
-  border: 2px solid gray;
+  border: 2px solid #7DF9FF;
   cursor: pointer;
 
 }
@@ -309,13 +312,14 @@ input:hover {
   background-color: rgb(24, 152, 184);
   box-shadow: 0px 5px 5px rgb(24, 152, 184);
   margin-left: 80px;
-  margin-top: 69px;
+  margin-top: 74px;
   margin-bottom: -74px;
   padding: 5px;
   border: 2px solid rgb(2, 2, 180);
   cursor: pointer;
   border-bottom: none;
   border-top: none;
+  overflow: hidden;
 }
 /* .vert:hover {
   width: 180px;
@@ -338,7 +342,7 @@ input:hover {
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
   background-color: rgba(24, 152, 184, 0.384);
-  margin-top: 213px;
+  margin-top: 183px;
   margin-left: -3px;
   color: white;
   border: 2px solid navy;
@@ -470,9 +474,22 @@ h6 {
   display:flex;
 }
 .searching {
-  width: 40px;
-  height:30px;
-  background-color:purple;
+  width: 45px;
+  height:35px;
+  background-color:white;
+  align-items:center;
+  text-align:center;
+  justify-content:center;
+  margin-right:350px;
+  margin-left:-180px;
+  border-radius: 10px;
+  font-weight: bolder;
+  cursor: pointer;
+}
+.searching:hover {
+  width: 45px;
+  height:40px;
+  background-color:white;
   align-items:center;
   text-align:center;
   justify-content:center;
@@ -481,10 +498,11 @@ h6 {
 }
 .material-symbols-light--search {
   display: inline-block;
-  width: 1em;
-  height: 1em;
+  width: 2em;
+  height: 2em;
+  color: white;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  /* background-size: 100% 100%; */
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='m19.485 20.154l-6.262-6.262q-.75.639-1.725.989t-1.96.35q-2.402 0-4.066-1.663T3.808 9.503T5.47 5.436t4.064-1.667t4.068 1.664T15.268 9.5q0 1.042-.369 2.017t-.97 1.668l6.262 6.261zM9.539 14.23q1.99 0 3.36-1.37t1.37-3.361t-1.37-3.36t-3.36-1.37t-3.361 1.37t-1.37 3.36t1.37 3.36t3.36 1.37'/%3E%3C/svg%3E");
 }
 .employees1{
@@ -634,15 +652,16 @@ button{
 }
 .display{
   display: flex;
-  background-color: rgba(0, 0, 255, 0.164);
+  background-color: rgba(12, 12, 85, 0.786);
   border-radius: 20px;
-  height: 435px;
+  height: 420px;
   border: 3px solid navy;
   padding: 5px;
   box-shadow:tomato;
   border-bottom: none;
   border-right: none;
   border-left: none;
+  margin-top: -10px;
 }
 .displayhere{
    /* display: none; */
