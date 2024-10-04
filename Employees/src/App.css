@@ -214,7 +214,7 @@ input:hover {
 
 }
 .delete {
-  
+  color: rgba(255, 255, 255, 0.24);
     width: "30px";
     height: "30px";
     display: "flex";
@@ -509,21 +509,23 @@ h6 {
   display:flex;
 }
 .searching {
-  width: 45px;
-  height:35px;
+  width: 30px;
+  height:30px;
   background-color:white;
   align-items:center;
   text-align:center;
   justify-content:center;
+  border: 2px solid purple;
   margin-right:350px;
   margin-left:-180px;
   border-radius: 10px;
   font-weight: bolder;
   cursor: pointer;
+  margin-top: 3px;
 }
 .searching:hover {
-  width: 45px;
-  height:40px;
+  width: 30px;
+  height:30px;
   background-color:white;
   align-items:center;
   text-align:center;

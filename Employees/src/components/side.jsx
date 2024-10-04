@@ -8,9 +8,9 @@ function Side() {
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
   const [position, setPosition] = useState('');
-  const [email, setEmail] = useState('');
   const [idnumber, setIdnumber] = useState('');
   const [call, setCall] = useState('');
+  const [image, setImage] = useState(null); // State to hold the uploaded image
   const [isUpdateFormVisible, setIsUpdateFormVisible] = useState(false);
   const [searchInput, setSearchInput] = useState('');
 
@@ -32,11 +32,22 @@ function Side() {
     setFilteredEmployees(filtered);
   };
 
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result); // Set the image state to the uploaded file
+      };
+      reader.readAsDataURL(file); // Convert image to base64
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // Check for empty inputs
-    if (!name || !surname || !position || !email || !idnumber || !call) {
+    if (!name || !surname || !position  || !idnumber || !call || !image) {
       alert("Please fill in all fields before submitting.");
       return;
     }
@@ -45,9 +56,10 @@ function Side() {
       name,
       surname,
       position,
-      email,
+      
       idnumber,
       call,
+      image 
     };
 
     if (isUpdateFormVisible) {
@@ -61,6 +73,7 @@ function Side() {
       alert("Employee updated successfully!");
       setIsUpdateFormVisible(false);
       setEmployee(null);
+      setImage(null);
     } else {
       const newEmployees = [...employees, formData];
       setEmployees(newEmployees);
@@ -68,6 +81,7 @@ function Side() {
       localStorage.setItem('employeesData', JSON.stringify(newEmployees));
       console.log("New employees data stored:", newEmployees);
       alert("Employee added successfully!");
+      setImage(null);
     }
 
     // Reset form fields
@@ -84,7 +98,7 @@ function Side() {
     setEmployees(newEmployees);
     setFilteredEmployees(newEmployees); 
     localStorage.setItem('employeesData', JSON.stringify(newEmployees));
-    alert("This Employee with be deleted permanently!!!")
+    alert("This Employee will be deleted permanently!!!");
   };
 
   const handleUpdate = (employeeToUpdate) => {
@@ -95,6 +109,7 @@ function Side() {
     setEmail(employeeToUpdate.email);
     setIdnumber(employeeToUpdate.idnumber);
     setCall(employeeToUpdate.call);
+    setImage(employeeToUpdate.image);
     setIsUpdateFormVisible(true);
   };
 
@@ -238,15 +253,15 @@ function Side() {
     </div>
 
     <div className="middlecontainer">
-      <div style={{ flex: 1 }}>
-        {/* Replace email input with image upload input */}
+      <div style={{ flex: 1 ,}}>
         <input
           type="file"
           id="imageUpload"
           onChange={(event) => handleImageUpload(event)}
           name="image"
           className="position"
-          accept="image/*" // Restrict to image files
+          accept="image/*" 
+          style={{backgroundColor:"white",height:"35px"}}
         />
         <input
           type="text"
@@ -282,7 +297,7 @@ function Side() {
 
             )}
             <div className="NewEmployee" style={{ height: "410px", backgroundColor: "transparent", padding: "5px", overflow: "auto", marginLeft: "200px", marginTop: "0px" }}>
-              <h2 style={{ position: "fixed", color: "navy", marginTop: "-50px" }}>My Employee List</h2>
+              <h2 style={{ position: "absolute", color: "navy", marginTop: "-50px",textShadow: "-1px 2px 0 red",color:"white" }}>My Employee List</h2>
 
               {filteredEmployees.map((emp, index) => (
                 <div key={index} style={{
@@ -302,10 +317,13 @@ function Side() {
                   <div style={{
                     width: "50px",
                     height: "50px",
-                    backgroundColor: "white",
+                    backgroundColor: "rgba(255, 255, 255, 0.24)",
                     borderRadius: "100%",
                     marginRight: "10px"
-                  }}></div>
+                  }}>
+                                          {emp.image && <img src={emp.image} alt="Employee" style={{ width: "50px", height: "50px", borderRadius: "50%", marginRight: "10px" }} />} 
+
+                  </div>
                   <h4 style={{
                     flex: "1",
                     color: "white",
