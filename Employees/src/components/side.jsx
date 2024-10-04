@@ -201,81 +201,85 @@ function Side() {
               </form>
             ) : (
               <form onSubmit={handleSubmit}>
-                <div>
-                  <h4 style={{ textShadow: "-1px 2px 0 red", marginLeft: "80px", color: "white" }}>
-                    SignUp Form
-                  </h4>
-                  <div className="middlecontainer">
-                    <div style={{ flex: 1 }}>
-                      <input
-                        value={name}
-                        name="name"
-                        id="name"
-                        onChange={(event) => setName(event.target.value)}
-                        className="name"
-                        placeholder={"Full Name"}
-                        type="text"
-                      />
-                      <input
-                        value={surname}
-                        id="lastname"
-                        onChange={(event) => setSurname(event.target.value)}
-                        name="surname"
-                        className="lastname"
-                        placeholder={"Surname"}
-                        type="text"
-                      />
-                    </div>
-                    <input
-                      placeholder={"Position"}
-                      value={position}
-                      id="position"
-                      onChange={(event) => setPosition(event.target.value)}
-                      name="position"
-                      className="middleinput"
-                      type="text"
-                    />
-                  </div>
+  <div>
+    <h4 style={{ textShadow: "-1px 2px 0 red", marginLeft: "80px", color: "white" }}>
+      SignUp Form
+    </h4>
+    <div className="middlecontainer">
+      <div style={{ flex: 1 }}>
+        <input
+          value={name}
+          name="name"
+          id="name"
+          onChange={(event) => setName(event.target.value)}
+          className="name"
+          placeholder={"Full Name"}
+          type="text"
+        />
+        <input
+          value={surname}
+          id="lastname"
+          onChange={(event) => setSurname(event.target.value)}
+          name="surname"
+          className="lastname"
+          placeholder={"Surname"}
+          type="text"
+        />
+      </div>
+      <input
+        placeholder={"Position"}
+        value={position}
+        id="position"
+        onChange={(event) => setPosition(event.target.value)}
+        name="position"
+        className="middleinput"
+        type="text"
+      />
+    </div>
 
-                  <div className="middlecontainer">
-                    <div style={{ flex: 1 }}>
-                      <input
-                        type="text"
-                        value={email}
-                        id="email"
-                        onChange={(event) => setEmail(event.target.value)}
-                        name="email"
-                        className="position"
-                        placeholder={"@Email"}
-                      />
-                      <input
-                        type="text"
-                        value={idnumber}
-                        id="idnumber"
-                        onChange={(event) => setIdnumber(event.target.value)}
-                        name="idnumber"
-                        className="position"
-                        placeholder={"ID number"}
-                      />
-                    </div>
-                    <div style={{ flex: 1 }}>
-                      <input
-                        type="text"
-                        value={call}
-                        id="call"
-                        onChange={(event) => setCall(event.target.value)}
-                        name="call"
-                        className="position"
-                        placeholder={"Phone number"}
-                      />
-                    </div>
-                  </div>
+    <div className="middlecontainer">
+      <div style={{ flex: 1 }}>
+        {/* Replace email input with image upload input */}
+        <input
+          type="file"
+          id="imageUpload"
+          onChange={(event) => handleImageUpload(event)}
+          name="image"
+          className="position"
+          accept="image/*" // Restrict to image files
+        />
+        <input
+          type="text"
+          value={idnumber}
+          id="idnumber"
+          onChange={(event) => setIdnumber(event.target.value)}
+          name="idnumber"
+          className="position"
+          placeholder={"ID number"}
+        />
+      </div>
+      <div style={{ flex: 1 }}>
+        <input
+          type="text"
+          value={call}
+          id="call"
+          onChange={(event) => setCall(event.target.value)}
+          name="call"
+          className="position"
+          placeholder={"Phone number"}
+        />
+      </div>
+    </div>
 
-                  <button className="Submit" style={{ marginLeft: "50px", width: "150px", height: "40px", color: "white", marginTop: "0px" }}>
-                    Submit
-                  </button>
-                </div>
-              </form>
+    <button
+      className="Submit"
+      style={{ marginLeft: "50px", width: "150px", height: "40px", color: "white", marginTop: "0px" }}
+    >
+      Submit
+    </button>
+  </div>
+</form>
+
             )}
             <div className="NewEmployee" style={{ height: "410px", backgroundColor: "transparent", padding: "5px", overflow: "auto", marginLeft: "200px", marginTop: "0px" }}>
               <h2 style={{ position: "fixed", color: "navy", marginTop: "-50px" }}>My Employee List</h2>
